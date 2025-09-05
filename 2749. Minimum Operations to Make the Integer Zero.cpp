@@ -1,16 +1,38 @@
 class Solution {
 public:
     int makeTheIntegerZero(int num1, int num2) {
-        for(int i=0;i<=60;i++){
-            long long int target = num1 - i*1LL*num2;
-            if(target<=0){
-                return -1;;
+        int t = 0;
+
+        while(true) {
+            long long val = (long long)num1 - (long long)t * num2;
+
+            if(val < 0) 
+                return -1;
+            
+            if(__builtin_popcountll(val) <= t && t <= val) {
+                return t;
             }
 
+            t++;
+        }
+
+        return -1;
+    }
+};
+
+// Better approach :
+class Solution {
+public:
+    int makeTheIntegerZero(int num1, int num2) {
+
+        for(int t=1; t<=36; t++) {
+            long long val = (long long)num1 - (long long)t * num2;
+
+            if(val < 0) 
+                return -1;
             
-            int bits = __builtin_popcountll(target);
-            if(bits<=i && target>=i){
-                return i;
+            if(__builtin_popcountll(val) <= t && t <= val) {
+                return t;
             }
         }
 
