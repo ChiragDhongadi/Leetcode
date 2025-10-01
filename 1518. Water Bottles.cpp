@@ -1,16 +1,14 @@
 class Solution {
 public:
     int numWaterBottles(int a, int b) {
-        int count =a;
-            int i=0;
-        while(a>=b){
-           count+=a/b;
-           int val =a/b;
-       
-           a-=(val)*b;
-           a+=val;
+        int count = a;
 
-         //  cout<<a<<" "<<count<<endl;
+        while(a >= b){
+           count += a/b;
+           int val = a/b;
+
+           a -= (val)*b;
+           a += val;
 
         }
         return count;
